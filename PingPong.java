@@ -1,8 +1,8 @@
 
 
 public class PingPong extends Thread{
-    private String cadena; //Lo que va a escribir
-    private int delay; // Tiempo entre escritura
+    private String cadena; //Lo que va a escribir.
+    private int delay; // Tiempo entre escritura.
 
     public PingPong(String cartel, int cantMs) {
         cadena = cartel;
@@ -22,7 +22,7 @@ public static void main(String[] args) {
     PingPong t1 = new PingPong("PING",33);
     PingPong t2 = new PingPong("PONG",10);
 
-    //Activación
+    //Activación.
     t1.start();
     t2.start();
 
