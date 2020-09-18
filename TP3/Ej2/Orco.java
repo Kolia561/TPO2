@@ -5,23 +5,18 @@ import java.util.logging.Logger;
 
 public class Orco extends Personaje {
     private int poder;
-    private Target target;
 
     public Orco() {
         poder = -3;
     }
 
-    public void setTarget(Target otroTarget) {
-        target = otroTarget;
-    }
-
-    public Orco(Target tj) {
-        target = tj;
+    public Orco(Personaje tj) {
+        this.setTarget(tj);
         poder = -3;
     }
 
     private void operar() {
-        target.getTarget().operar(poder);
+        this.getTarget().operar(poder);
     }
 
     public void run() {

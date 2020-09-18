@@ -2,7 +2,7 @@ package TP3.Ej2;
 
 
 public class Personaje implements Runnable {
-
+    private Personaje target;
     private int vida = 10;
     
     public Personaje(){
@@ -10,6 +10,14 @@ public class Personaje implements Runnable {
 
     public int getVida(){
         return vida;
+    }
+
+    public void setTarget(Personaje tar) {
+        target = tar;
+    }
+
+    public Personaje getTarget() {
+        return target;
     }
 
     public synchronized void operar(int valor) {

@@ -2,7 +2,7 @@ package TP3.Ej2;
 
 public class Main {
     public static void main(String[] args) {
-        Target target = new Target();
+        Personaje target = new Personaje();
         // Sanador otroHealer = new Sanador();
         // target.setTarget(otroHealer);
         // otroHealer.setTarget(target);

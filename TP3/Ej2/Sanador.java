@@ -5,23 +5,18 @@ import java.util.logging.Logger;
 
 public class Sanador extends Personaje {
     private int poder;
-    private Target target;
 
     public Sanador() {
         poder = 3;
     }
 
-    public void setTarget(Target otroTarget) {
-        target = otroTarget;
-    }
-
-    public Sanador(Target tj) {
-        target = tj;
+    public Sanador(Personaje tj) {
+        this.setTarget(tj);
         poder = 3;
     }
 
     private void operar() {
-        target.getTarget().operar(poder);
+        this.getTarget().operar(poder);
     }
 
     public void run() {
