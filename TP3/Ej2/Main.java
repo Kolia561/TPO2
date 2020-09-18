@@ -13,7 +13,7 @@ public class Main {
         Thread orco = new Thread(dps, "Orco");
         heal.start();
         orco.start();
-        // oHeal.start();
-    }
+        // oHeal.start(); //La idea es poder seleccionar personajes para que interactuen concurrentemente
+    }                     //En este caso se sincroniza el mismo hilo que esta siendo objetivo, hace objetivo a si mismo pero podria hacer objetivo a otro "personaje"
 
 }
