@@ -1,6 +1,6 @@
 package TP3.Ej4;
 
-public class Auto extends Vehiculo implements Runnable {
+public class Auto extends Vehiculo {
     private Surtidor surtidor;
 
     public Auto (String pat, String mod, String mar, Surtidor surt){
