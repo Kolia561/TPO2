@@ -13,7 +13,6 @@ public class Personaje implements Runnable {
     }
 
     public synchronized void operar(int valor) {
-        
         if (valor > 0) {
             System.out.println(Thread.currentThread().getName() + " está realizando una sanacion de: " + 3 + " puntos de vida.");
         } else {
