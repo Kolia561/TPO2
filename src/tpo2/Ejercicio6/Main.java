@@ -17,12 +17,12 @@ public class Main {
         Thread[] hilo= new Thread[2];
         Recurso compartido = new Recurso();
         Character[] letras = {'a','b','c'};
-        int veces=3;
+        int[] veces={1,2,3};
         
         
         for (int i = 0; i < 3; i++) {
 
-            hilo[i] = new Thread(new Escritor(compartido,letras[i],veces));
+            hilo[i] = new Thread(new Escritor(compartido,letras[i],veces[i]));
             hilo[i].setName("Escritor"+letras[i]);
             hilo[i].start();
 
