@@ -15,15 +15,22 @@ import java.util.logging.Logger;
  */
 public class Vehiculo {
 
+    Semaphore semVehiculo = new Semaphore(1);
     Semaphore semTaxista = new Semaphore(0);
     Semaphore semCliente = new Semaphore(0);
 
-    public void tomarTaxi() {
+    public boolean subirVehiculo() {
+
+        return semVehiculo.tryAcquire();
+
+    }
+
+    public void iniciarViaje() {
 
         try {
             semTaxista.release();
 
-            System.out.println("El cliente se subio al taxi y procede a viajar");
+            System.out.println("----------El cliente se subio al taxi y procede a viajar");
 
             semCliente.acquire();
 
@@ -34,7 +41,8 @@ public class Vehiculo {
 
     public void bajarTaxi() {
         
-        
+        semVehiculo.release();
+
     }
 
     public void conducirTaxi() {
@@ -51,18 +59,19 @@ public class Vehiculo {
     }
 
     public void arriboDestino() {
+
+        
+        System.out.println("----------El vehiculo llego a destino");
         
         semCliente.release();
-            
-        System.out.println("El vehiculo llego a destino");
         
-        
+
         try {
             semTaxista.acquire();
         } catch (InterruptedException ex) {
             Logger.getLogger(Vehiculo.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
 }

@@ -12,26 +12,24 @@ import java.util.logging.Logger;
  *
  * @author Kolia
  */
-public class Taxista implements Runnable{
-    
+public class Taxista implements Runnable {
+
     private Vehiculo coche;
 
     public Taxista(Vehiculo coche) {
         this.coche = coche;
     }
-    
-    
-    
-    public void run(){
-    
-    
-        try {
-            coche.conducirTaxi();
-            Thread.sleep((int)(1000*Math.random()));
-            coche.arriboDestino();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Taxista.class.getName()).log(Level.SEVERE, null, ex);
+
+    public void run() {
+
+        while (true) {
+            try {
+                coche.conducirTaxi();
+                Thread.sleep((int) (1000 * Math.random()));
+                coche.arriboDestino();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Taxista.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-    
     }
 }

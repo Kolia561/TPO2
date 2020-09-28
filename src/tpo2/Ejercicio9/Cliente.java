@@ -12,19 +12,22 @@ import java.util.logging.Logger;
  *
  * @author Kolia
  */
-public class Cliente implements Runnable{
-    
-     private Vehiculo coche;
+public class Cliente implements Runnable {
 
-    public Cliente (Vehiculo coche) {
+    private Vehiculo coche;
+
+    public Cliente(Vehiculo coche) {
         this.coche = coche;
     }
-    
-    public void run(){
-    
-        coche.tomarTaxi();
-    
-    
-    
+
+    public void run() {
+
+        if (coche.subirVehiculo()) {
+            
+            coche.iniciarViaje();
+            System.out.println("El Cliente se va");
+            coche.bajarTaxi();
+        }
+
     }
 }
