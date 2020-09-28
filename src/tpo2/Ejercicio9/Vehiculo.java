@@ -19,20 +19,20 @@ public class Vehiculo {
     Semaphore semTaxista = new Semaphore(0);
     Semaphore semCliente = new Semaphore(0);
 
-    public boolean subirVehiculo() {
-
-        return semVehiculo.tryAcquire();
-
+    public void subirVehiculo() throws InterruptedException {
+         
+         semVehiculo.acquire();
+         
     }
 
     public void iniciarViaje() {
 
         try {
-            semTaxista.release();
+            semTaxista.release(); 
 
             System.out.println("----------El cliente se subio al taxi y procede a viajar");
 
-            semCliente.acquire();
+            semCliente.acquire(); 
 
         } catch (InterruptedException ex) {
             Logger.getLogger(Vehiculo.class.getName()).log(Level.SEVERE, null, ex);
@@ -41,15 +41,14 @@ public class Vehiculo {
 
     public void bajarTaxi() {
         
-        semVehiculo.release();
+        semVehiculo.release(); 
 
     }
 
     public void conducirTaxi() {
 
         try {
-            semTaxista.acquire();
-
+            semTaxista.acquire();            
             System.out.println("El taxista comienza a conducir");
 
         } catch (InterruptedException ex) {
@@ -63,14 +62,14 @@ public class Vehiculo {
         
         System.out.println("----------El vehiculo llego a destino");
         
-        semCliente.release();
+        semCliente.release(); 
         
 
-        try {
+        /*try {
             semTaxista.acquire();
         } catch (InterruptedException ex) {
             Logger.getLogger(Vehiculo.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
 
     }
 

@@ -25,6 +25,7 @@ public class Taxista implements Runnable {
         while (true) {
             try {
                 coche.conducirTaxi();
+                
                 Thread.sleep((int) (1000 * Math.random()));
                 coche.arriboDestino();
             } catch (InterruptedException ex) {

@@ -22,8 +22,15 @@ public class Cliente implements Runnable {
 
     public void run() {
 
-        if (coche.subirVehiculo()) {
-            
+        while (true) {
+        // if (coche.subirVehiculo()) {
+        try {
+            coche.subirVehiculo();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }   
+
             coche.iniciarViaje();
             System.out.println("El Cliente se va");
             coche.bajarTaxi();
