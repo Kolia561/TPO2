@@ -26,6 +26,7 @@ public class Atleta implements Runnable {
     public void run() {
         
         try {
+            
             recuTestigo.tomarTestigo();
             Thread.sleep((int)(2000*Math.random()));
         } catch (InterruptedException ex) {
