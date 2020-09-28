@@ -13,8 +13,8 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         
-        Escritor[] escritores= new Escritor[2];
-        Thread[] hilo= new Thread[2];
+        Escritor[] escritores= new Escritor[3];
+        Thread[] hilo= new Thread[3];
         Recurso compartido = new Recurso();
         Character[] letras = {'a','b','c'};
         int[] veces={1,2,3};
