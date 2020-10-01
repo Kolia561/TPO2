@@ -14,7 +14,14 @@ import java.util.concurrent.Semaphore;
 public class Carrera {
 
     public static void main(String[] args) {
+      
        Testigo testigo = new Testigo();
+       
+       Thread[] hilos= new Thread[8];
+       
+       for(i=0; i<8; i++){
+         
+         hilod[i]= new Thread((new Atleta(testigo)).setName("Atleta"+i))
        
        
     }
