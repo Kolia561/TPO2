@@ -5,25 +5,25 @@
  */
 package tpo2.Ejercicio8;
 
-import java.util.concurrent.Semaphore;
-
 /**
  *
  * @author Kolia
  */
 public class Carrera {
 
-    public static void main(String[] args) {
+  public static void main(String[] args) {
+    
+    Testigo testigo = new Testigo();
       
-       Testigo testigo = new Testigo();
-       
-       Thread[] hilos= new Thread[8];
-       
-       for(i=0; i<8; i++){
-         
-         hilod[i]= new Thread((new Atleta(testigo)).setName("Atleta"+i))
-       
-       
-    }
+    Thread[] Atletas= new Thread[4];
 
+    long tiempoInicioCarrera = System.currentTimeMillis(); // tiempo en el que empieza la carrera
+      
+    for(int i=0; i<4; i++){
+        
+      Atletas[i]= new Thread(new Atleta(testigo,tiempoInicioCarrera),"Atleta"+i);
+      
+      Atletas[i].start();
+    }
+  }
 }
