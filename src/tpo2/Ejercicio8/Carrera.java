@@ -19,10 +19,16 @@ public class Carrera {
 
     long tiempoInicioCarrera = System.currentTimeMillis(); // tiempo en el que empieza la carrera
       
-    for(int i=0; i<4; i++){
-        
-      Atletas[i]= new Thread(new Atleta(testigo,tiempoInicioCarrera),"Atleta"+i);
-      
+    for (int i = 0; i < 4; i++) {
+
+      Atletas[i] = new Thread(new Atleta(testigo, tiempoInicioCarrera), "Atleta" + i);
+
+      try {
+        testigo.largar();  // para que larguen de a uno a medida que toman el testigo
+      } catch (InterruptedException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
       Atletas[i].start();
     }
   }

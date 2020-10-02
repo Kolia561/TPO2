@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 public class Testigo {
 
     private Semaphore testigo = new Semaphore(1, true);
+    private Semaphore largada = new Semaphore(1, true);
 
     public void tomarTestigo() {
 
@@ -31,8 +32,12 @@ public class Testigo {
 
     }
 
-    public void entregarTestigo() {
+    public void largar() throws InterruptedException { //el Atleta larga
+        largada.acquire();
+    }
 
+    public void entregarTestigo() {
+        largada.release();  //libera para que largue el proximo atleta
         testigo.release();
 
     }
