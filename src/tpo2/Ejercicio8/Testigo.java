@@ -17,6 +17,7 @@ public class Testigo {
 
     private Semaphore testigo = new Semaphore(1, true);
     private Semaphore largada = new Semaphore(1, true);
+    private int turno = 0;
 
     public void tomarTestigo() {
 
@@ -32,14 +33,20 @@ public class Testigo {
 
     }
 
-    public void largar() throws InterruptedException { //el Atleta larga
-        largada.acquire();
+    boolean esMiTurno(int unTurno){
+        return (turno == unTurno);
+    }
+
+    public void largar() throws InterruptedException { // el Atleta larga
+        if (largada.tryAcquire()) {largada.acquire();}
     }
 
     public void entregarTestigo() {
-        largada.release();  //libera para que largue el proximo atleta
+        
+        turno++;
+        largada.release(); // libera para que largue el proximo atleta
         testigo.release();
-
+        
     }
 
 }
