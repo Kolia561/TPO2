@@ -15,8 +15,29 @@ public class Hamster implements Runnable {
 
     public Hamster(Jaula jaulaComun) {
         this.jaulaComun = jaulaComun;
+
     }
 
     @Override
-    public void run(){}
+    public void run() {
+
+        while (true) {
+            if (!jaulaComun.usaRueda()) {
+
+                System.out.println("El "+ Thread.currentThread().getName()+" no pudo usar la rueda");
+            }
+            if (!jaulaComun.comer()) {
+                
+                System.out.println("El "+ Thread.currentThread().getName()+" no pudo comer");
+            }
+
+            if (!jaulaComun.usarAmaca()) {
+                
+                System.out.println("El "+ Thread.currentThread().getName()+" no pudo usar la amaca");
+            }
+            
+            jaulaComun.pasear();
+
+        }
+    }
 }

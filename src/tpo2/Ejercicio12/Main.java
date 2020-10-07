@@ -5,6 +5,11 @@
  */
 package tpo2.Ejercicio12;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
+
 /**
  *
  * @author Kolia
@@ -13,14 +18,19 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Thread[] hilos = new Thread[5];
+        List<Thread> hamsters = new ArrayList<>();
         Jaula jaulaComun = new Jaula();
 
-        for (int i = 0; i < hilos.length; i++) {
+        for (int i = 0; i < 4; i++) {
 
-            hilos[i] = new Thread(new Hamster(jaulaComun), ("Hamster " + (i + 1)) );
-            hilos[i].start();
+            hamsters.add(new Thread(new Hamster(jaulaComun), ("Hamster " + (i + 1))));
+
         }
+
+        hamsters.forEach((Thread hamster) -> {
+            hamster.start();
+        });
+
     }
 
 }
