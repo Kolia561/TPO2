@@ -28,22 +28,21 @@ public class Buffet {
     public void llamarMozo() throws InterruptedException{
         atencionMozo.acquire(); // el mozo deja de crear nuevas versiones de pollo y va a atender al empleado
         System.out.println("El mozo va a atender al empleado " + Thread.currentThread().getName());
-        Thread.sleep(1000);        
+        Thread.sleep(1000);
+        System.out.println("El mozo pregunta al empleado " +  Thread.currentThread().getName() + " que va a querer comer");
     }
 
 
     public void pedirMenu() throws InterruptedException{
-            // el mozo llega a la mesa
-            System.out.println("El mozo pregunta al empleado " +  Thread.currentThread().getName() + " que va a querer comer");
-            ordenMenu.release();        
-    }
-
-    public void seleccionarMenu() throws InterruptedException{
-            // tiene el menu y elige entre las opciones y selecciona su opcion
+            
+             // tiene el menu y elige entre las opciones y selecciona su opcion
             int aleatorio = new Random().nextInt(this.menu.length);
             String opcionMenu = this.menu[aleatorio];
             System.out.println("El empleado " + Thread.currentThread().getName() + " va a pedir " + opcionMenu);
+            
+            ordenMenu.release();        
     }
+
 
     public void comer() throws InterruptedException{
             // el mozo le trae la comida y empieza a comer
@@ -67,9 +66,10 @@ public class Buffet {
     }
     public void servirComida() throws InterruptedException{
             // el cocinero termino de cocinar y el mozo lleva la comida al empleado
+            System.out.println("El mozo lleva la comida al empleado.");
+            Thread.sleep(1000); // tiempo para llevar la comida  
             comida.release();
-            System.out.println("El mozo lleva la comida al empleado.");            
-            Thread.sleep(1000); // tiempo para llevar la comida        
+                   
     }
     public void terminar() throws InterruptedException{
             // el mozo termina de atender y se pone a crear de nuevo

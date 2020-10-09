@@ -15,7 +15,6 @@ public class Empleado implements Runnable {
             //buffet.sentarse();
             buffet.llamarMozo();
             buffet.pedirMenu();
-            buffet.seleccionarMenu();
             buffet.comer();
             //buffet.irse();
         } catch (InterruptedException e) {
