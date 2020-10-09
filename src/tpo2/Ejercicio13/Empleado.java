@@ -11,7 +11,17 @@ public class Empleado implements Runnable {
 
     @Override
     public void run() {
-        this.buffet.comerEnBuffet(Thread.currentThread().getName());
+        try {
+            //buffet.sentarse();
+            buffet.llamarMozo();
+            buffet.pedirMenu();
+            buffet.comer();
+            //buffet.irse();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
     }
 
 }

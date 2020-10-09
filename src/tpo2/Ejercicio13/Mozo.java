@@ -11,9 +11,15 @@ public class Mozo implements Runnable {
 
     @Override
     public void run() {
-        
-       while(true) {
-           this.buffet.atencionBuffet();
-       }
+        try{ 
+            while(true) {
+                buffet.tomarOrden();
+                buffet.servirComida();
+                buffet.terminar();
+            }
+             } catch (InterruptedException e) {
+                 // TODO Auto-generated catch block
+                 e.printStackTrace();
+             }
     }
 }

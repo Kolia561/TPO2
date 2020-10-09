@@ -1,5 +1,7 @@
 package tpo2.Ejercicio14;
 
+import tpo2.Ejercicio13.Buffet;
+
 public class Cocinero implements Runnable{
 
     private Buffet buffet;

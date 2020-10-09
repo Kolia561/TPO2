@@ -17,64 +17,66 @@ public class Buffet {
         return menu;
     }
     
-    // metodo para simular el comportamiento del empleado para ir a comer
-    public void comerEnBuffet(String nombre) {
-        try {
 
-            silla.acquire(); // adquirir silla del buffet -- Es una sola silla
-            System.out.println("El empleado " + nombre + " ocupó la slla del buffet.");
-            Thread.sleep(200);
-            
-            // se llama la atencion del mozo
-            atencionMozo.acquire(); // el mozo deja de crear nuevas versiones de pollo y va a atender al empleado
-            System.out.println("El mozo va a atender al empleado " + nombre);
-            Thread.sleep(1000);
-            
-            // el mozo llega a la mesa
-            System.out.println("El mozo pregunta al empleado " +  nombre + " que va a querer comer");
-            ordenMenu.release();
+    
+    //public void sentarse() throws InterruptedException {
+    //    silla.acquire(); // adquirir silla del buffet -- Es una sola silla
+    //    System.out.println("El empleado " + Thread.currentThread().getName() + " ocupó la slla del buffet.");
+    //    Thread.sleep(200);
+    //}
 
-            // tiene el menu y elige entre las opciones y selecciona su opcion
-            int aleatorio = new Random().nextInt(this.menu.length);
-            String opcionMenu = this.menu[aleatorio];
-            System.out.println("El empleado " + nombre + " va a pedir " + opcionMenu);
-            
-            // el mozo le trae la comida y empieza a comer
-            comida.acquire();
-            System.out.println("El empleado " + nombre + " empieza a comer.");
-            Thread.sleep(5000); // tiempo para comer
-
-            // el empleado termina de comer y se retira
-            silla.release();
-            System.out.println("El empleado " + nombre +" termina de comer y se levanta de la silla.");
-            Thread.sleep(1000); // tiempo para dejar el buffet
-
-        } catch (Exception e) {
-
-        }
+    public void llamarMozo() throws InterruptedException{
+        atencionMozo.acquire(); // el mozo deja de crear nuevas versiones de pollo y va a atender al empleado
+        System.out.println("El mozo va a atender al empleado " + Thread.currentThread().getName());
+        Thread.sleep(1000);
+        System.out.println("El mozo pregunta al empleado " +  Thread.currentThread().getName() + " que va a querer comer");
     }
 
-    // metodo para simular la atencion del mozo en el buffet
 
-    public void atencionBuffet() {
-        try {
-            // el mozo ya se encuentra en la mesa para tomar la orden
+    public void pedirMenu() throws InterruptedException{
+            
+             // tiene el menu y elige entre las opciones y selecciona su opcion
+            int aleatorio = new Random().nextInt(this.menu.length);
+            String opcionMenu = this.menu[aleatorio];
+            System.out.println("El empleado " + Thread.currentThread().getName() + " va a pedir " + opcionMenu);
+            
+            ordenMenu.release();        
+    }
+
+
+    public void comer() throws InterruptedException{
+            // el mozo le trae la comida y empieza a comer
+            comida.acquire();
+            System.out.println("El empleado " + Thread.currentThread().getName() + " come y se va.");
+            Thread.sleep(5000); // tiempo para comer        
+    }
+
+    //public void irse()throws InterruptedException{
+    //        // el empleado termina de comer y se retira
+    //        silla.release();
+    //        System.out.println("El empleado " + Thread.currentThread().getName() +" termina de comer y se levanta de la silla.");
+    //        Thread.sleep(1000); // tiempo para dejar el buffet        
+    //}
+
+    public void tomarOrden() throws InterruptedException{
+                    // el mozo ya se encuentra en la mesa para tomar la orden
             ordenMenu.acquire();
             System.out.println("El mozo tomó la orden y se la lleva al cocinero.");            
             Thread.sleep(1000); // tiempo para llevar la orden al cocinero
-
+    }
+    public void servirComida() throws InterruptedException{
             // el cocinero termino de cocinar y el mozo lleva la comida al empleado
+            System.out.println("El mozo lleva la comida al empleado.");
+            Thread.sleep(1000); // tiempo para llevar la comida  
             comida.release();
-            System.out.println("El mozo lleva la comida al empleado.");            
-            Thread.sleep(1000); // tiempo para llevar la comida
-
+                   
+    }
+    public void terminar() throws InterruptedException{
             // el mozo termina de atender y se pone a crear de nuevo
-            atencionMozo.release();
+            
             System.out.println("El mozo sirvió el menu al empleado y vuelva a crear nuevas versiones de pollo.");
             Thread.sleep(200);
-        } catch (Exception e) {
-            
-        }
-    }  
+            atencionMozo.release();
+    }
     
 }
