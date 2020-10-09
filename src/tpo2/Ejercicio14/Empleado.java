@@ -14,6 +14,7 @@ public class Empleado implements Runnable {
         try {
             buffet.sentarse();
             buffet.llamarMozo();
+            buffet.entregarMenu();
             buffet.seleccionarMenu();
             buffet.comer();
             buffet.irse();
