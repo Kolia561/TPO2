@@ -73,9 +73,10 @@ public class Buffet {
     }
     public void terminar() throws InterruptedException{
             // el mozo termina de atender y se pone a crear de nuevo
-            atencionMozo.release();
+            
             System.out.println("El mozo sirvió el menu al empleado y vuelva a crear nuevas versiones de pollo.");
-            Thread.sleep(200);        
+            Thread.sleep(200);
+            atencionMozo.release();
     }
     
 }
