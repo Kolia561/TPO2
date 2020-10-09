@@ -12,12 +12,12 @@ public class Empleado implements Runnable {
     @Override
     public void run() {
         try {
-            buffet.sentarse();
+            //buffet.sentarse();
             buffet.llamarMozo();
-            buffet.entregarMenu();
+            buffet.pedirMenu();
             buffet.seleccionarMenu();
             buffet.comer();
-            buffet.irse();
+            //buffet.irse();
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
