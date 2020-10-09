@@ -13,7 +13,6 @@ public class Mozo implements Runnable {
     public void run() {
         try{ 
             while(true) {
-                buffet.entregarMenu();
                 buffet.tomarOrden();
                 buffet.servirComida();
                 buffet.terminar();
